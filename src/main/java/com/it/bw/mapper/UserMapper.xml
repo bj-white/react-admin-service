@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.it.bw.mapper.UserMapper">
+	<sql id="select_where">
+		<where>
+			<!-- <if test="user != null">
+				<if test="user.username != null and user.username != ''">
+					and `username` like '%${user.username}%'
+				</if>
+			</if> -->
+			<if test="username != null and username != ''">
+				and `username` like '%${username}%'
+			</if>
+		</where>
+	</sql>
+
+	<select id="selectByPage" parameterType="basequeryvo" resultType="user">
+		select * from user
+		<!-- <include refid="select_where"></include> -->
+		<if test="start != null and rows != null">
+			limit #{start}, #{rows}
+		</if>
+	</select>
+	
+	<select id="getCount" parameterType="basequeryvo" resultType="long">
+		select count(*) from user
+		<!-- <include refid="select_where"></include> -->
+	</select>
+	
+	<select id="getById" parameterType="long" resultType="user">
+		select * from user where id = #{id};
+	</select>
+	
+	<insert id="add" parameterType="user" useGeneratedKeys="true" keyProperty="id">
+		INSERT INTO `user`
+			(`usercode`, 
+			`username`, 
+			`password`, 
+			`createtime`, 
+			`updatetime`, 
+			`state`)
+		VALUES
+			(#{usercode}, 
+			#{username}, 
+			#{password}, 
+			#{createtime}, 
+			#{updatetime}, 
+			#{state});
+	</insert>
+	
+	<update id="update" parameterType="user">
+		UPDATE `user` 
+		SET
+			`usercode` = #{usercode}, 
+			`username` = #{username},
+			`password` = #{password},	
+			`updatetime` = #{updatetime}, 
+			`state` = #{state}			
+		WHERE
+			`id` = #{id};
+	</update>
+	
+	<delete id="delete" parameterType="long">
+		DELETE FROM `user` 
+		WHERE `id` = #{id};
+	</delete>
+
+</mapper>
