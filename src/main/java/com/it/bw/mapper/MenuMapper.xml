@@ -4,8 +4,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.it.bw.mapper.MenuMapper">
 
-	<select id="selectByPage" resultType="menu">
+	<select id="getByPage" parameterType="basequeryvo" resultType="menu">
 		select * from menu
+		<if test="start != null and rows != null">
+			limit #{start}, #{rows}
+		</if>
 	</select>
 	
 	<select id="getCount" resultType="long">
