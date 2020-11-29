@@ -1,5 +1,7 @@
 package com.it.bw.util;
 
+import java.util.Map;
+
 public class ReturnData {
 	private Integer status;
 	private String msg;
@@ -15,6 +17,12 @@ public class ReturnData {
 		this.status = status;
 		this.msg = msg;
 		this.data = data;
+	}
+
+	public ReturnData(Object object) {
+		this.status = 1;
+		this.msg = "ok";
+		this.data = object;
 	}
 
 	public Integer getStatus() {
