@@ -1,9 +1,6 @@
 package com.it.bw.pojo;
 
-import java.util.Date;
-import java.util.List;
-
-public class Menu {
+public class Menu extends BasePojo {
 	private Long id;
 	private String name;
 	private Long parent_id;
@@ -12,10 +9,7 @@ public class Menu {
 	private Integer sort;
 	private String icon;
 	private Long createby;
-	private Date createtime;
-	private Date updatetime;
 	private Integer state;
-	private List<Menu> children;
 	public Long getId() {
 		return id;
 	}
@@ -64,28 +58,15 @@ public class Menu {
 	public void setCreateby(Long createby) {
 		this.createby = createby;
 	}
-	public Date getCreatetime() {
-		return createtime;
-	}
-	public void setCreatetime(Date createtime) {
-		this.createtime = createtime;
-	}
-	public Date getUpdatetime() {
-		return updatetime;
-	}
-	public void setUpdatetime(Date updatetime) {
-		this.updatetime = updatetime;
-	}
 	public Integer getState() {
 		return state;
 	}
 	public void setState(Integer state) {
 		this.state = state;
 	}
-	public List<Menu> getChildren() {
-		return children;
-	}
-	public void setChildren(List<Menu> children) {
-		this.children = children;
+	@Override
+	public String toString() {
+		return "Menu [id=" + id + ", name=" + name + ", parent_id=" + parent_id + ", url=" + url + ", component="
+				+ component + ", sort=" + sort + ", icon=" + icon + ", createby=" + createby + ", state=" + state + "]";
 	}
 }

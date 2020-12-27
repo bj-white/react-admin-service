@@ -14,5 +14,53 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="getCount" resultType="long">
 		select count(*) from menu
 	</select>
+	
+	<select id="getById" parameterType="long" resultType="menu">
+		select * from menu where id = #{id}
+	</select>
+	
+	<insert id="add" parameterType="menu" useGeneratedKeys="true" keyProperty="id">
+		INSERT INTO `menu`
+			(`name`, 
+			`parent_id`, 
+			`url`, 
+			`component`, 
+			`sort`, 
+			`icon`, 
+			`createby`, 
+			`createtime`, 
+			`updatetime`, 
+			`state`)
+		VALUES
+			(#{name}, 
+			#{parent_id}, 
+			#{url}, 
+			#{component}, 
+			#{sort}, 
+			#{icon}, 
+			#{createby}, 
+			#{createtime}, 
+			#{updatetime}, 
+			#{state});
+	</insert>
+	
+	<update id="update" parameterType="menu">
+		UPDATE `menu` 
+		SET
+			`name` = #{name}, 
+			`parent_id` = #{parent_id}, 
+			`url` = #{url}, 
+			`component` = #{component}, 
+			`sort` = #{sort}, 
+			`icon` = #{icon}, 
+			`updatetime` = #{updatetime}, 
+			`state` = #{state}			
+		WHERE
+			`id` = #{id};
+	</update>
+	
+	<delete id="delete" parameterType="long">
+		delete from `menu` where `id` = #{id}
+	</delete>
 
 </mapper>

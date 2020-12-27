@@ -37,5 +37,23 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			#{updatetime}, 
 			#{state});
 	</insert>
+	
+	<update id="update" parameterType="user">
+		UPDATE `user` 
+		SET
+			`usercode` = #{usercode}, 
+			`username` = #{username}, 
+			<if test="password != null and password != ''">			
+				`password` = #{password}, 
+			</if>		
+			`updatetime` = #{updatetime}, 
+			`state` = #{state}			
+		WHERE
+			`id` = #{id};
+	</update>
+	
+	<delete id="delete" parameterType="long">
+		delete from `user` where `id` = #{id}
+	</delete>
 
 </mapper>
