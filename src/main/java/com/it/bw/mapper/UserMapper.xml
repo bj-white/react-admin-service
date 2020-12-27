@@ -18,5 +18,24 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="getById" parameterType="long" resultType="user">
 		select * from user where id = #{id}
 	</select>
+	
+	<insert id="add" parameterType="user" useGeneratedKeys="true" keyProperty="id">
+		INSERT INTO `user`
+			(`usercode`, 
+			`username`, 
+			`password`, 
+			`createby`, 
+			`createtime`, 
+			`updatetime`, 
+			`state`)
+		VALUES
+			(#{usercode}, 
+			#{username}, 
+			#{password}, 
+			#{createby}, 
+			#{createtime}, 
+			#{updatetime}, 
+			#{state});
+	</insert>
 
 </mapper>

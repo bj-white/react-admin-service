@@ -1,1 +1,40 @@
-hello world
+<!doctype html>
+<html lang="zh">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+</head>
+<body>
+	<button onClick="userList()">user list</button>
+	<button onClick="userAdd()">user add</button>
+	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+	<script>
+		function userList () {
+			axios({
+				url: '/user/getByPage.do',
+				params: {
+					page: 1,
+					rows: 2
+				}
+			}).then(function (response) {
+			    console.log(response);
+		  	});
+		}
+		function userAdd () {
+			axios({
+				url: '/user/add.do',
+				method: 'post',
+				data: {
+					usercode: 'test',
+					username: 'ceshi',
+					password: '123456',
+					createby: 1,
+					state: 1,
+				}
+			}).then(function (response) {
+			    console.log(response);
+		  	});
+		}
+	</script>
+</body>
+</html>	

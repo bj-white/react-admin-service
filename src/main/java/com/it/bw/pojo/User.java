@@ -43,4 +43,9 @@ public class User extends BasePojo {
 	public void setState(Integer state) {
 		this.state = state;
 	}
+	@Override
+	public String toString() {
+		return "User [id=" + id + ", usercode=" + usercode + ", username=" + username + ", password=" + password
+				+ ", createby=" + createby + ", state=" + state + "]";
+	}
 }
