@@ -29,7 +29,6 @@ public class BaseController<T, Q> {
 	@RequestMapping(value="/add", method=RequestMethod.POST)
 	@ResponseBody
 	public ReturnData add(@RequestBody T t) {
-		System.out.println(t);
 		baseServiceImpl.add(t);
 		return new ReturnData();
 	}
@@ -37,7 +36,6 @@ public class BaseController<T, Q> {
 	@RequestMapping(value="/update", method=RequestMethod.POST)
 	@ResponseBody
 	public ReturnData update(@RequestBody T t) {
-		System.out.println(t);
 		baseServiceImpl.update(t);
 		return new ReturnData();
 	}

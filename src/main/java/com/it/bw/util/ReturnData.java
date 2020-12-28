@@ -1,7 +1,5 @@
 package com.it.bw.util;
 
-import java.util.Map;
-
 public class ReturnData {
 	private Integer status;
 	private String msg;

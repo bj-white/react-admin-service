@@ -1,5 +1,7 @@
 package com.it.bw.pojo;
 
+import java.util.List;
+
 public class Menu extends BasePojo {
 	private Long id;
 	private String name;
@@ -10,6 +12,7 @@ public class Menu extends BasePojo {
 	private String icon;
 	private Long createby;
 	private Integer state;
+	private List<Menu> children;
 	public Long getId() {
 		return id;
 	}
@@ -64,9 +67,10 @@ public class Menu extends BasePojo {
 	public void setState(Integer state) {
 		this.state = state;
 	}
-	@Override
-	public String toString() {
-		return "Menu [id=" + id + ", name=" + name + ", parent_id=" + parent_id + ", url=" + url + ", component="
-				+ component + ", sort=" + sort + ", icon=" + icon + ", createby=" + createby + ", state=" + state + "]";
+	public List<Menu> getChildren() {
+		return children;
+	}
+	public void setChildren(List<Menu> children) {
+		this.children = children;
 	}
 }

@@ -16,7 +16,7 @@
 			axios({
 				url: '/user/getById.do',
 				params: {
-					id: 1
+					id: 8
 				}
 			}).then(function (response) {
 			    console.log(response);
@@ -26,7 +26,7 @@
 			axios({
 				url: '/user/delete.do',
 				params: {
-					id: 4
+					id: 8
 				}
 			}).then(function (response) {
 			    console.log(response);
@@ -37,7 +37,7 @@
 				url: '/user/getByPage.do',
 				params: {
 					page: 1,
-					rows: 2
+					rows: 10
 				}
 			}).then(function (response) {
 			    console.log(response);
@@ -63,7 +63,7 @@
 				url: '/user/update.do',
 				method: 'post',
 				data: {
-					id: 2,
+					id: 8,
 					usercode: 'white',
 					username: 'world',
 					password: '',
