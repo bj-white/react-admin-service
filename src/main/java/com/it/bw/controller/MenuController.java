@@ -37,7 +37,8 @@ public class MenuController extends BaseController<Menu, BaseQueryVo> {
 				resultList.add(menu);
 			}
 		}
-		return resultList;
+		
+		return resultList.size() != 0 ? resultList : null;
 	}
 	
 }
