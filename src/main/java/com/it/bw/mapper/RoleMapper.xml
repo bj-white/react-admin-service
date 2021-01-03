@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.it.bw.mapper.RoleMapper">
+
+	<sql id="where">
+		<if test="name != null and name != ''">
+			where name = #{name}
+		</if>
+	</sql>
+
+	<select id="getByPage" parameterType="rolequeryvo" resultType="role">
+		select * from role
+		<include refid="where"></include>
+		<if test="start != null and rows != null">
+			limit #{start}, #{rows}
+		</if>
+	</select>
+	
+	<select id="getCount" parameterType="rolequeryvo" resultType="long">
+		select count(*) from role
+		<include refid="where"></include>
+	</select>
+	
+	<select id="getById" parameterType="long" resultType="role">
+		select * from role where id = #{id}
+	</select>
+	
+	<insert id="add" parameterType="role" useGeneratedKeys="true" keyProperty="id">
+		INSERT INTO `role`
+			(`name`, 
+			`createby`, 
+			`createtime`, 
+			`updatetime`)
+		VALUES
+			(#{name},
+			#{createby}, 
+			#{createtime}, 
+			#{updatetime});
+	</insert>
+	
+	<update id="update" parameterType="role">
+		UPDATE `role` 
+		SET
+			`name` = #{name}, 
+			`updatetime` = #{updatetime}
+		WHERE
+			`id` = #{id};
+	</update>
+	
+	<delete id="delete" parameterType="long">
+		delete from `role` where `id` = #{id}
+	</delete>
+
+</mapper>
