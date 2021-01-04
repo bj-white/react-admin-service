@@ -5,9 +5,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="com.it.bw.mapper.RoleMapper">
 
 	<sql id="where">
-		<if test="name != null and name != ''">
-			where name = #{name}
-		</if>
+		<where>
+			<if test="name != null and name != ''">
+				and `name` like '%${name}%'
+			</if>
+		</where>
 	</sql>
 
 	<select id="getByPage" parameterType="rolequeryvo" resultType="role">
