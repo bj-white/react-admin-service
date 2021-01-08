@@ -1,7 +1,6 @@
 package com.it.bw.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -28,14 +27,15 @@ public class BaseController<T, Q> {
 	
 	@RequestMapping(value="/add", method=RequestMethod.POST)
 	@ResponseBody
-	public ReturnData add(@RequestBody T t) {
+	public ReturnData add(T t) {
 		baseServiceImpl.add(t);
 		return new ReturnData();
 	}
 	
 	@RequestMapping(value="/update", method=RequestMethod.POST)
 	@ResponseBody
-	public ReturnData update(@RequestBody T t) {
+	public ReturnData update(T t) {
+		System.out.println(t);
 		baseServiceImpl.update(t);
 		return new ReturnData();
 	}

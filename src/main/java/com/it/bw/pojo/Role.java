@@ -1,12 +1,9 @@
 package com.it.bw.pojo;
 
-import java.util.List;
-
 public class Role extends BasePojo {
 	private Long id;
 	private String name;
 	private Long createby;
-	private List<Menu> menus;
 	public Long getId() {
 		return id;
 	}
@@ -24,11 +21,5 @@ public class Role extends BasePojo {
 	}
 	public void setCreateby(Long createby) {
 		this.createby = createby;
-	}
-	public List<Menu> getMenus() {
-		return menus;
-	}
-	public void setMenus(List<Menu> menus) {
-		this.menus = menus;
 	}
 }

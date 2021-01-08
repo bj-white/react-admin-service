@@ -29,6 +29,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select * from role where id = #{id}
 	</select>
 	
+	<select id="getMenuIdByRole" parameterType="long" resultType="string">
+		select menu_id from menu_role where role_id = #{id}
+	</select>
+	
 	<insert id="add" parameterType="role" useGeneratedKeys="true" keyProperty="id">
 		INSERT INTO `role`
 			(`name`, 
