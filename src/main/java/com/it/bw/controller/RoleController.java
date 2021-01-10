@@ -27,9 +27,9 @@ public class RoleController extends BaseController<Role, RoleQueryVo> {
 	
 	@RequestMapping(value="/setMenuIdByRole", method=RequestMethod.POST)
 	@ResponseBody
-	public ReturnData setMenuIdByRole(Long id, @RequestParam(value="menus[]") Integer[] menus) {
+	public ReturnData setMenuIdByRole(Long id, @RequestParam(value="menus[]", required=false) Long[] menus) {
 		System.out.println(id);
-		System.out.println(menus.toString());
+		roleServiceImpl.setMenuIdByRole(id, menus);
 		return new ReturnData();
 	}
 	

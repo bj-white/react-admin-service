@@ -1,6 +1,8 @@
 package com.it.bw.service.impl;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,4 +21,25 @@ public class RoleServiceImpl extends BaseServiceImpl<Role, RoleQueryVo> implemen
 	@Override
 	public List<String> getMenuIdByRole(Long id) {
 		return roleMapper.getMenuIdByRole(id);
-	}}
+	}
+
+	@Override
+	public void setMenuIdByRole(Long id, Long[] menus) {
+		roleMapper.deleteMenuRole(id);
+		if (menus != null) {
+			for (int i = 0; i < menus.length; i++) {
+				Map map = new HashMap();
+				map.put("role_id", id);
+				map.put("menu_id", menus[i]);
+				roleMapper.addMenuRole(map);
+			}
+		}
+	}
+	
+	@Override
+	public void delete(Long id) {
+		roleMapper.deleteMenuRole(id);
+		super.delete(id);
+	}
+	
+}

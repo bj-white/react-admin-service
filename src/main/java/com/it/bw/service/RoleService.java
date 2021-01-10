@@ -9,4 +9,6 @@ public interface RoleService extends BaseService<Role, RoleQueryVo> {
 	
 	public List<String> getMenuIdByRole(Long id);
 	
+	public void setMenuIdByRole(Long id, Long[] menus);
+	
 }

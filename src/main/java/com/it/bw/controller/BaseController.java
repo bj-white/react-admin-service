@@ -35,7 +35,6 @@ public class BaseController<T, Q> {
 	@RequestMapping(value="/update", method=RequestMethod.POST)
 	@ResponseBody
 	public ReturnData update(T t) {
-		System.out.println(t);
 		baseServiceImpl.update(t);
 		return new ReturnData();
 	}

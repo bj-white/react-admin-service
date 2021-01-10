@@ -58,5 +58,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<delete id="delete" parameterType="long">
 		delete from `role` where `id` = #{id}
 	</delete>
+	
+	<insert id="addMenuRole" parameterType="map">
+		insert into `menu_role` (`menu_id`, `role_id`) values (#{menu_id}, #{role_id})
+	</insert>
+	
+	<delete id="deleteMenuRole" parameterType="long">
+		delete from `menu_role` where `role_id` = #{id}
+	</delete>
 
 </mapper>
