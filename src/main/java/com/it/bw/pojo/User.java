@@ -1,5 +1,7 @@
 package com.it.bw.pojo;
 
+import java.util.List;
+
 public class User extends BasePojo {
 	private Long id;
 	private String usercode;	
@@ -7,6 +9,7 @@ public class User extends BasePojo {
 	private String password;	
 	private Long createby;
 	private Integer state;
+	private List<Role> roles;
 	public Long getId() {
 		return id;
 	}
@@ -26,6 +29,9 @@ public class User extends BasePojo {
 		this.username = username;
 	}
 	public String getPassword() {
+		if (password == null) {
+			return "";
+		}
 		return password;
 	}
 	public void setPassword(String password) {
@@ -42,6 +48,12 @@ public class User extends BasePojo {
 	}
 	public void setState(Integer state) {
 		this.state = state;
+	}
+	public List<Role> getRoles() {
+		return roles;
+	}
+	public void setRoles(List<Role> roles) {
+		this.roles = roles;
 	}
 	@Override
 	public String toString() {

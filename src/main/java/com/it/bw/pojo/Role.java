@@ -22,4 +22,8 @@ public class Role extends BasePojo {
 	public void setCreateby(Long createby) {
 		this.createby = createby;
 	}
+	@Override
+	public String toString() {
+		return "Role [id=" + id + ", name=" + name + ", createby=" + createby + "]";
+	}
 }
