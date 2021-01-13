@@ -66,5 +66,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<delete id="deleteMenuRole" parameterType="long">
 		delete from `menu_role` where `role_id` = #{id}
 	</delete>
+	
+	<delete id="deleteUserRole" parameterType="long">
+		delete from `user_role` where `role_id` = #{id}
+	</delete>
 
 </mapper>

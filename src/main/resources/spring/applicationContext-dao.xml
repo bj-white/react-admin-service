@@ -14,7 +14,7 @@
 	http://www.springframework.org/schema/util
 	http://www.springframework.org/schema/util/spring-util-4.0.xsd">
 
-	<context:property-placeholder location="classpath:properties/db.properties"/>
+	<context:property-placeholder location="classpath*:properties/*.properties"/>
 
 	<!-- 配置 数据源 -->
 	<bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource">

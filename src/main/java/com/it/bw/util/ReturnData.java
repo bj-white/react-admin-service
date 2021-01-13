@@ -10,17 +10,23 @@ public class ReturnData {
 		this.msg = "ok";
 		this.data = null;
 	}
+	
+	public ReturnData(Object object) {
+		this.status = 1;
+		this.msg = "ok";
+		this.data = object;
+	}
+	
+	public ReturnData(Integer status, String msg) {
+		this.status = status;
+		this.msg = msg;
+		this.data = null;
+	}
 
 	public ReturnData(Integer status, String msg, Object data) {
 		this.status = status;
 		this.msg = msg;
 		this.data = data;
-	}
-
-	public ReturnData(Object object) {
-		this.status = 1;
-		this.msg = "ok";
-		this.data = object;
 	}
 
 	public Integer getStatus() {

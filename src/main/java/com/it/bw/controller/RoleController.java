@@ -1,10 +1,10 @@
 package com.it.bw.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.it.bw.pojo.Role;
@@ -17,19 +17,24 @@ import com.it.bw.util.ReturnData;
 public class RoleController extends BaseController<Role, RoleQueryVo> {
 	
 	@Autowired
+	private RedisTemplate redisTemplate;
+	
+	@Autowired
 	private RoleService roleServiceImpl;
 	
 	@RequestMapping("/getMenuIdByRole")
 	@ResponseBody
 	public ReturnData getMenuIdByRole(Long id) {
+		String str = (String)redisTemplate.boundValueOps("name").get();
+		System.out.println(str);
 		return new ReturnData(roleServiceImpl.getMenuIdByRole(id));
 	}
 	
-	@RequestMapping(value="/setMenuIdByRole", method=RequestMethod.POST)
+	@RequestMapping(value="/addMenuRole", method=RequestMethod.POST)
 	@ResponseBody
-	public ReturnData setMenuIdByRole(Long id, @RequestParam(value="menus[]", required=false) Long[] menus) {
+	public ReturnData addMenuRole(Long id, Long[] menus) {
 		System.out.println(id);
-		roleServiceImpl.setMenuIdByRole(id, menus);
+		roleServiceImpl.addMenuRole(id, menus);
 		return new ReturnData();
 	}
 	

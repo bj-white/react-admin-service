@@ -24,10 +24,11 @@ public class RoleServiceImpl extends BaseServiceImpl<Role, RoleQueryVo> implemen
 	}
 
 	@Override
-	public void setMenuIdByRole(Long id, Long[] menus) {
+	public void addMenuRole(Long id, Long[] menus) {
 		roleMapper.deleteMenuRole(id);
 		if (menus != null) {
 			for (int i = 0; i < menus.length; i++) {
+				System.out.println(menus[i]);
 				Map map = new HashMap();
 				map.put("role_id", id);
 				map.put("menu_id", menus[i]);
@@ -39,6 +40,7 @@ public class RoleServiceImpl extends BaseServiceImpl<Role, RoleQueryVo> implemen
 	@Override
 	public void delete(Long id) {
 		roleMapper.deleteMenuRole(id);
+		roleMapper.deleteUserRole(id);
 		super.delete(id);
 	}
 	

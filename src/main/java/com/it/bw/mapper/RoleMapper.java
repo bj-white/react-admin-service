@@ -14,4 +14,6 @@ public interface RoleMapper extends BaseMapper<Role, RoleQueryVo> {
 	
 	public void deleteMenuRole(Long id);
 	
+	public void deleteUserRole(Long id);
+	
 }
