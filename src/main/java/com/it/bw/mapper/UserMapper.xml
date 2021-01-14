@@ -85,5 +85,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			(#{0},
 			#{1});
 	</insert>
+	
+	<select id="login" parameterType="user" resultType="user">
+		select * from user where usercode = #{usercode};
+	</select>
 
 </mapper>
