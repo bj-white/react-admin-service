@@ -8,12 +8,17 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.it.bw.util.JsonUtil;
 
 public class LoginInterceptor implements HandlerInterceptor {
+	
+	@Autowired
+	private RedisTemplate redisTemplate;
 
 	@Override
 	public void afterCompletion(HttpServletRequest arg0, HttpServletResponse arg1, Object arg2, Exception arg3)
@@ -41,7 +46,18 @@ public class LoginInterceptor implements HandlerInterceptor {
 		System.out.println(token);
 		
 		if (token == null || "".equals(token)) {
-			writer(response, 2, "用户没有登录");
+			System.out.println("未登录");
+			// writer(response, 3, "用户没有登录");
+			response.setStatus(502);
+			return false;
+		}
+		
+		String str = (String)redisTemplate.boundValueOps(token).get();
+		System.out.println(str);
+		if (str == null || "".equals(str)) {
+			System.out.println("登录过期");
+			// writer(response, 3, "登录过期");
+			response.setStatus(502);
 			return false;
 		}
 		

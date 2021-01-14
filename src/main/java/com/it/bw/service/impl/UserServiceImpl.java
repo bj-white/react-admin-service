@@ -64,7 +64,7 @@ public class UserServiceImpl extends BaseServiceImpl<User, BaseQueryVo> implemen
 	}
 
 	@Override
-	public User login(User user) {
+	public String login(User user) {
 		User login = userMapper.login(user);
 		if (login == null) {
 			throw new CommonException("用户名不存在");
@@ -78,9 +78,6 @@ public class UserServiceImpl extends BaseServiceImpl<User, BaseQueryVo> implemen
 		System.out.println(loginJson);
 		redisTemplate.boundValueOps(token).set(loginJson, TokenTime, TimeUnit.SECONDS);
 		
-		String str = (String)redisTemplate.boundValueOps(token).get();
-		System.out.println(JsonUtil.jsonToPojo(str, User.class));
-		
-		return null;
+		return token;
 	}
 }

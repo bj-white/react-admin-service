@@ -23,13 +23,14 @@ public class UserController extends BaseController<User, BaseQueryVo> {
 	@ResponseBody
 	public ReturnData login(User user) {
 		System.out.println("login...........");
+		String token = null;
 		try {
-			userServiceImpl.login(user);
+			token = userServiceImpl.login(user);
 		} catch (CommonException e) {
 			return new ReturnData(2, e.getMessage());
 		}
 		
-		return new ReturnData(1, "登录成功");
+		return new ReturnData(1, "登录成功", token);
 	}
 	
 }

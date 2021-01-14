@@ -5,6 +5,6 @@ import com.it.bw.pojo.User;
 
 public interface UserService extends BaseService<User, BaseQueryVo> {
 	
-	public User login(User user);
+	public String login(User user);
 	
 }
