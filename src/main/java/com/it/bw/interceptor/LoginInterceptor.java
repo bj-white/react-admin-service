@@ -19,6 +19,29 @@ public class LoginInterceptor implements HandlerInterceptor {
 	
 	@Autowired
 	private RedisTemplate redisTemplate;
+	
+	@Override
+	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object arg2) throws Exception {
+		String url = request.getServletPath();
+		if (url.equals("/user/login.do")) {
+			return true;
+		}
+		
+		String token = request.getHeader("X-Token");
+		
+		if (token == null || "".equals(token)) {
+			response.setStatus(502);
+			return false;
+		}
+		
+		String str = (String)redisTemplate.boundValueOps(token).get();
+		if (str == null || "".equals(str)) {
+			response.setStatus(502);
+			return false;
+		}
+		
+		return true;
+	}
 
 	@Override
 	public void afterCompletion(HttpServletRequest arg0, HttpServletResponse arg1, Object arg2, Exception arg3)
@@ -32,36 +55,6 @@ public class LoginInterceptor implements HandlerInterceptor {
 			throws Exception {
 		// TODO Auto-generated method stub
 		
-	}
-
-	@Override
-	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object arg2) throws Exception {
-		String url = request.getServletPath();
-		System.out.println(url);
-		if (url.equals("/user/login.do")) {
-			return true;
-		}
-		
-		String token = request.getHeader("X-Token");
-		System.out.println(token);
-		
-		if (token == null || "".equals(token)) {
-			System.out.println("未登录");
-			// writer(response, 3, "用户没有登录");
-			response.setStatus(502);
-			return false;
-		}
-		
-		String str = (String)redisTemplate.boundValueOps(token).get();
-		System.out.println(str);
-		if (str == null || "".equals(str)) {
-			System.out.println("登录过期");
-			// writer(response, 3, "登录过期");
-			response.setStatus(502);
-			return false;
-		}
-		
-		return true;
 	}
 
 	private void writer(HttpServletResponse response, int status, String msg) throws IOException {
