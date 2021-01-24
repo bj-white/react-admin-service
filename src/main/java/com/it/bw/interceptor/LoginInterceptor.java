@@ -4,11 +4,13 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
@@ -16,6 +18,9 @@ import org.springframework.web.servlet.ModelAndView;
 import com.it.bw.util.JsonUtil;
 
 public class LoginInterceptor implements HandlerInterceptor {
+	
+	@Value("${TokenTime}")
+	private Long TokenTime;
 	
 	@Autowired
 	private RedisTemplate redisTemplate;
@@ -39,6 +44,8 @@ public class LoginInterceptor implements HandlerInterceptor {
 			response.setStatus(502);
 			return false;
 		}
+		
+		redisTemplate.boundValueOps(token).set(str, TokenTime, TimeUnit.SECONDS);
 		
 		return true;
 	}
