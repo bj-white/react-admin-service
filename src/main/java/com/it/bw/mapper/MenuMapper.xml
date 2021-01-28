@@ -5,7 +5,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="com.it.bw.mapper.MenuMapper">
 
 	<select id="getByPage" parameterType="basequeryvo" resultType="menu">
-		select * from menu
+		select * from menu order by sort
 		<if test="start != null and rows != null">
 			limit #{start}, #{rows}
 		</if>
@@ -62,5 +62,23 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<delete id="delete" parameterType="long">
 		delete from `menu` where `id` = #{id}
 	</delete>
+	
+	<select id="getMenuTreeByUser" parameterType="long" resultType="menu">
+		select 
+			distinct m.id,
+			m.name,
+			m.parent_id,
+			m.url,
+			m.component,
+			m.sort,
+			m.icon,
+			m.state
+		from menu m, menu_role mr, user_role ur
+		where 
+			ur.user_id = #{id}
+			and ur.role_id = mr.role_id
+			and mr.menu_id = m.id
+		order by sort
+	</select>
 
 </mapper>
