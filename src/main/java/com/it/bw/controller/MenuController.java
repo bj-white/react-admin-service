@@ -60,8 +60,7 @@ public class MenuController extends BaseController<Menu, BaseQueryVo> {
 			}
 		}
 		
-		// return resultList.size() != 0 ? resultList : null;
-		return resultList;
+		return resultList.size() != 0 ? resultList : null;
 	}
 	
 }
