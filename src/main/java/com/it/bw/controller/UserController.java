@@ -30,7 +30,7 @@ public class UserController extends BaseController<User, BaseQueryVo> {
 			return new ReturnData(2, e.getMessage());
 		}
 		
-		return new ReturnData(1, "µÇÂ¼³É¹¦", token);
+		return new ReturnData(1, "ï¿½ï¿½Â¼ï¿½É¹ï¿½", token);
 	}
 	
 }
